@@ -1,8 +1,8 @@
 package com.funtl.alibaba.dubbo.core;
 
-import com.alibaba.dubbo.config.AbstractConfig;
-import com.alibaba.dubbo.config.spring.beans.factory.annotation.DubboFeignBuilder;
-import com.alibaba.dubbo.config.spring.beans.factory.annotation.FeignClientToDubboProviderBeanPostProcessor;
+import org.apache.dubbo.config.AbstractConfig;
+import org.apache.dubbo.config.spring.beans.factory.annotation.DubboFeignBuilder;
+import org.apache.dubbo.config.spring.beans.factory.annotation.FeignClientToDubboProviderBeanPostProcessor;
 import feign.Feign;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -13,19 +13,18 @@ import org.springframework.core.env.Environment;
 
 import java.util.Set;
 
-import static com.alibaba.boot.dubbo.util.DubboUtils.BASE_PACKAGES_PROPERTY_NAME;
-import static com.alibaba.boot.dubbo.util.DubboUtils.DUBBO_PREFIX;
 import static java.util.Collections.emptySet;
+import static org.apache.dubbo.spring.boot.util.DubboUtils.*;
 
 @Configuration
 @ConditionalOnProperty(prefix = DUBBO_PREFIX, name = "enabled", matchIfMissing = true, havingValue = "true")
 @ConditionalOnClass(AbstractConfig.class)
 public class SpringCloudAlibabaDubboAutoConfiguration {
-    @ConditionalOnProperty(name = BASE_PACKAGES_PROPERTY_NAME)
+    @ConditionalOnProperty(name = DUBBO_SCAN_PREFIX + BASE_PACKAGES_PROPERTY_NAME)
     @ConditionalOnClass(ConfigurationPropertySources.class)
     @Bean
     public FeignClientToDubboProviderBeanPostProcessor feignClientToDubboProviderBeanPostProcessor(Environment environment) {
-        Set<String> packagesToScan = environment.getProperty(BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
+        Set<String> packagesToScan = environment.getProperty(DUBBO_SCAN_PREFIX + BASE_PACKAGES_PROPERTY_NAME, Set.class, emptySet());
         return new FeignClientToDubboProviderBeanPostProcessor(packagesToScan);
     }
 

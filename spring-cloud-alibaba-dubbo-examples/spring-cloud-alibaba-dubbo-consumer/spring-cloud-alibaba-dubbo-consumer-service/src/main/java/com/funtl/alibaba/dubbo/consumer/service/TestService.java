@@ -1,5 +1,6 @@
 package com.funtl.alibaba.dubbo.consumer.service;
 
+import com.funtl.alibaba.dubbo.provider.dto.UserDTO;
 import com.funtl.alibaba.dubbo.provider.service.FooService;
 import com.funtl.alibaba.dubbo.provider.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,14 @@ public class TestService {
     @GetMapping("/test/foo")
     public String testFoo() {
         return fooService.foo();
+    }
+
+
+    @GetMapping("/login")
+    public UserDTO login() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername("admin");
+        userDTO.setPassword("123456");
+        return fooService.login(userDTO);
     }
 }

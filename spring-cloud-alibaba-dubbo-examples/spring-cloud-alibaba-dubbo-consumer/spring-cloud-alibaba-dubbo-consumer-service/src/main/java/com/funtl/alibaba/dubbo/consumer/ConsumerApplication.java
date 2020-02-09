@@ -14,12 +14,4 @@ public class ConsumerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class ,args);
     }
-
-    @Bean
-    public ProtocolConfig protocolConfig() {
-        ProtocolConfig protocolConfig = new ProtocolConfig();
-        protocolConfig.setPort(30880);
-        protocolConfig.setName("dubbo");
-        return protocolConfig;
-    }
 }

@@ -38,6 +38,10 @@
             <artifactId>spring-cloud-alibaba-dubbo-nacos</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-serialization-kryo</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

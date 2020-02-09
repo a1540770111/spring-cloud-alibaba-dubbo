@@ -1,5 +1,6 @@
 package com.funtl.alibaba.dubbo.provider.service.impl;
 
+import com.funtl.alibaba.dubbo.provider.dto.UserDTO;
 import com.funtl.alibaba.dubbo.provider.service.FooService;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,5 +9,10 @@ public class FooServiceImpl implements FooService {
     @Override
     public String foo() {
         return "Foo Spring Cloud Alibaba Dubbo";
+    }
+
+    @Override
+    public UserDTO login(UserDTO userDTO) {
+        return userDTO;
     }
 }

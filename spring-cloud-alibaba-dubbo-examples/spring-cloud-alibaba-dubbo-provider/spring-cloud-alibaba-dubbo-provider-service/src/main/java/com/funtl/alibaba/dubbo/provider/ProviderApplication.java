@@ -12,12 +12,4 @@ public class ProviderApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProviderApplication.class, args);
     }
-
-    @Bean
-    public ProtocolConfig protocolConfig() {
-        ProtocolConfig protocolConfig = new ProtocolConfig();
-        protocolConfig.setPort(20880);
-        protocolConfig.setName("dubbo");
-        return protocolConfig;
-    }
 }

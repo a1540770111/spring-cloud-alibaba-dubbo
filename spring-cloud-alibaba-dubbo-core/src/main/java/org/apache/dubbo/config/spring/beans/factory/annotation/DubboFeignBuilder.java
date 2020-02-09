@@ -1,8 +1,8 @@
-package com.alibaba.dubbo.config.spring.beans.factory.annotation;
+package org.apache.dubbo.config.spring.beans.factory.annotation;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import feign.Feign;
 import feign.Target;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.ReflectionUtils;
@@ -26,7 +26,6 @@ public class DubboFeignBuilder extends Feign.Builder {
         ReferenceBeanBuilder beanBuilder = ReferenceBeanBuilder
                 .create(defaultReference, target.getClass().getClassLoader(), applicationContext)
                 .interfaceClass(target.type());
-
         try {
             T object = (T) beanBuilder.build().getObject();
             return object;
